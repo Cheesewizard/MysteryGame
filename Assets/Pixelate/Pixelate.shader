@@ -1,62 +1,43 @@
-﻿Shader "Hidden/Pixelated"
+﻿#pragma kernel Pixelate
+
+RWTexture2D<float4> _ImageFilterResult;
+
+int _BlockSize;
+int _ResultWidth;
+int _ResultHeight;
+
+[numthreads(8,8,1)]
+void Pixelate (uint3 id : SV_DispatchThreadID)
 {
-	Properties
-	{
-		_MainTex("Texture", 2D) = "white" {}
-		_ScreenWidth("screen width", float) = 320.0
-		_ScreenHeight("screen height", float) = 240.0
-		_CellSizeX("size of x cell", float) = 4.0
-		_CellSizeY("size of y cell", float) = 4.0
-	}
-		SubShader
-	{
-		// No culling or depth
-		Cull Off ZWrite Off ZTest Always
+    if (id.x >= _ResultWidth || id.y >= _ResultHeight)
+        return;
 
-		Pass
-		{
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
+    const float2 startPos = id.xy * _BlockSize;
+    
+    if (startPos.x >= _ResultWidth || startPos.y >= _ResultHeight)
+        return;
+    
+    const int blockWidth = min(_BlockSize, _ResultWidth - startPos.x);
+    const int blockHeight = min(_BlockSize, _ResultHeight - startPos.y);
+    const int numPixels = blockHeight * blockWidth;
+    
+    float4 colour = float4(0, 0, 0, 0);
+    for (int i = 0; i < blockWidth; ++i)
+    {
+        for (int j = 0; j < blockHeight; ++j)
+        {
+            const uint2 pixelPos = uint2(startPos.x + i, startPos.y + j);
+            colour += _ImageFilterResult[pixelPos];
+        }
+    }
+    colour /= numPixels;
 
-			#include "UnityCG.cginc"
-
-			struct appdata
-			{
-				float4 vertex : POSITION;
-				float2 uv : TEXCOORD0;
-			};
-
-			struct v2f
-			{
-				float2 uv : TEXCOORD0;
-				float4 vertex : SV_POSITION;
-			};
-
-			v2f vert(appdata v)
-			{
-				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.uv = v.uv;
-				return o;
-			}
-
-			sampler2D _MainTex;
-			float _ScreenWidth;
-			float _ScreenHeight;
-			float _CellSizeX;
-			float _CellSizeY;
-
-			fixed4 frag(v2f i) : SV_Target
-			{
-				float2 uv = i.uv;
-
-				float pixelX = _ScreenWidth / _CellSizeX;
-				float pixelY = _ScreenHeight / _CellSizeY;
-
-				return tex2D(_MainTex, float2(floor(pixelX * uv.x) / pixelX, floor(pixelY * uv.y) / pixelY));
-			}
-			ENDCG
-		}
-	}
+    for (int i = 0; i < blockWidth; ++i)
+    {
+        for (int j = 0; j < blockHeight; ++j)
+        {
+            const uint2 pixelPos = uint2(startPos.x + i, startPos.y + j);
+            _ImageFilterResult[pixelPos] = colour;
+        }
+    }
 }
