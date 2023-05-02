@@ -15,6 +15,14 @@ namespace Game.Scripts.Gameplay.Player
 		[SerializeField]
 		private UnityEngine.Animator playerAnimator;
 		public UnityEngine.Animator PlayerAnimator => playerAnimator;
+		
+		[SerializeField]
+		private PlayerInventory playerInventory;
+		public PlayerInventory PlayerInventory => playerInventory;
+		
+		[SerializeField]
+		private PlayerInteractionBehaviour playerInteractionBehaviour;
+		public PlayerInteractionBehaviour PlayerInteractionBehaviour => playerInteractionBehaviour;
 
 		public static async UniTask<PlayerRig> LoadAsync()
 		{

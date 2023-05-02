@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shoot",
-                    "type": "Button",
-                    "id": "a008f341-8758-499c-baa5-025b64bbd90c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Rotate",
                     "type": "Value",
                     "id": "2d6e2034-db49-463a-bc28-7df2121d750a",
@@ -42,9 +33,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Reload",
+                    "name": "Read",
                     "type": "Button",
                     "id": "59922655-f74d-4e49-906e-74c896742811",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pickup",
+                    "type": "Button",
+                    "id": "c56d26cf-3cbc-4433-a0b7-27c5fe495950",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -120,17 +120,6 @@
                 },
                 {
                     "name": "",
-                    "id": "df181c21-264f-48c8-bc55-f0112d4fa0f2",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard & Mouse",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "43b4058c-1294-4a16-bdb2-670f59dea413",
                     "path": "<Mouse>/position",
                     "interactions": "",
@@ -147,7 +136,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Reload",
+                    "action": "Read",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b0f4eeb-8aac-4f5e-8617-83fdade652e5",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pickup",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
