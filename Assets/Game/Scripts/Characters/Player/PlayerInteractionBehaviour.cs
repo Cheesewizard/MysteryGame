@@ -12,6 +12,7 @@ namespace Game.Scripts.Characters.Player
 		private PlayerInput playerInput => PlayerInputLocator.GetPlayerInput();
 
 		private Item currentItem;
+		private Item previousItem;
 
 		public event Action<string> OnInteractWithItem;
 		public event Action OnExitItem;
@@ -50,6 +51,7 @@ namespace Game.Scripts.Characters.Player
 		{
 			if (other.TryGetComponent<Item>(out var item))
 			{
+				previousItem = currentItem;
 				currentItem = item;
 				Debug.Log($"Current item {item.name}");
 				item.SetButtons(true);
@@ -59,12 +61,18 @@ namespace Game.Scripts.Characters.Player
 		private void OnTriggerExit2D(Collider2D other)
 		{
 			if (currentItem == null) return;
-			
+
 			// Disable the interaction with the previous item
 			currentItem.SetButtons(false);
 
+			if (previousItem != null)
+			{
+				previousItem.SetButtons(false);
+				previousItem = null;
+			}
+
 			Debug.Log($"Leaving previous item {currentItem}");
-			
+
 			OnExitItem?.Invoke();
 			currentItem = null;
 		}
