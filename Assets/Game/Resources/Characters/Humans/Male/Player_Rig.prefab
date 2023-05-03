@@ -176,6 +176,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 3263828266947554126}
   movementSpeed: 3
+  isGamepad: 0
+  gamepadRotationSpeed: 0.05
+  mouseRotationSpeed: 0.08
 --- !u!114 &859671486095033323
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using Game.Scripts.Characters.UI.Controller_Icons;
 using Game.Scripts.Controls;
 using UnityEngine;
 
@@ -13,19 +14,36 @@ namespace Game.Scripts.Characters.Player
 
 		[SerializeField]
 		private float movementSpeed = 20;
+		
+		private static bool IsGamepad => GameControllerManager.instance.IsGamepad;
+
+		[SerializeField]
+		private float gamepadRotationSpeed = 0.05f;
+
+		[SerializeField]
+		private float mouseRotationSpeed = 0.08f;
 
 		public event Action<bool> OnMovement;
 		public event Action OnKilled;
 
 		private void Start()
 		{
-			Cursor.visible = false; // maybe remove. Could add laser site as an item further into the game
+			Cursor.visible = false; // maybe remove.
 			playerInput?.Player.Enable();
 		}
-
+		
 		private void Update()
 		{
-			LookAtMouse();
+			// Mouse & Keyboard
+			if (!IsGamepad)
+			{
+				LookAtMouse();
+			}
+			else
+			{
+				LookAtRightStick();
+			}
+
 			Move();
 		}
 
@@ -43,15 +61,27 @@ namespace Game.Scripts.Characters.Player
 		{
 			var input = playerInput.Player.Rotate.ReadValue<Vector2>();
 
-			var worldPoint = targetCamera.ScreenToWorldPoint(new Vector3(input.x, input.y, targetCamera.nearClipPlane));
+			var worldPoint =
+				targetCamera.ScreenToWorldPoint(new Vector3(input.x, input.y, targetCamera.nearClipPlane));
 			var difference = worldPoint - transform.position;
 
 			var angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-			transform.parent.localRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+
+			transform.parent.localRotation = Quaternion.Lerp(transform.parent.localRotation,
+				Quaternion.Euler(new Vector3(0, 0, angle)), mouseRotationSpeed);
 		}
 
-		private void OnTriggerEnter2D(Collider2D collision)
+		private void LookAtRightStick()
 		{
+			if (playerInput.Player.Rotate.IsPressed())
+			{
+				var input = playerInput.Player.Rotate.ReadValue<Vector2>();
+
+				var angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
+
+				transform.parent.localRotation = Quaternion.Lerp(transform.parent.localRotation,
+					Quaternion.Euler(new Vector3(0, 0, angle)), gamepadRotationSpeed);
+			}
 		}
 	}
 }

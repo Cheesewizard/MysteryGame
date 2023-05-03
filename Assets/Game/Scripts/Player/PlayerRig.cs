@@ -1,6 +1,6 @@
-using Cysharp.Threading.Tasks;
 using Game.Scripts.Characters.Player;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game.Scripts.Gameplay.Player
 {
@@ -10,25 +10,22 @@ namespace Game.Scripts.Gameplay.Player
 
 		[SerializeField]
 		private PlayerMovementBehaviour playerMovementBehaviour;
+
 		public PlayerMovementBehaviour PlayerMovementBehaviour => playerMovementBehaviour;
 
 		[SerializeField]
 		private UnityEngine.Animator playerAnimator;
+
 		public UnityEngine.Animator PlayerAnimator => playerAnimator;
-		
+
 		[SerializeField]
 		private PlayerInventory playerInventory;
+
 		public PlayerInventory PlayerInventory => playerInventory;
-		
+
 		[SerializeField]
 		private PlayerInteractionBehaviour playerInteractionBehaviour;
-		public PlayerInteractionBehaviour PlayerInteractionBehaviour => playerInteractionBehaviour;
 
-		public static async UniTask<PlayerRig> LoadAsync()
-		{
-			var loadedObject = await Resources.LoadAsync<PlayerRig>(PLAYER_RIG_PREFAB_PATH);
-			var rig = (PlayerRig) Instantiate(loadedObject);
-			return rig;
-		}
+		public PlayerInteractionBehaviour PlayerInteractionBehaviour => playerInteractionBehaviour;
 	}
 }
