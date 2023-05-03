@@ -290,6 +290,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupItem (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1646612035834706473, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4143290587342861228, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
       propertyPath: m_text
       value: This trophy reminds me of when I won the sports day running event.
@@ -353,7 +357,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1646612035834706473, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
 --- !u!1001 &633082885
 PrefabInstance:
