@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 1946414084583297005}
   - component: {fileID: 1136426447414486994}
   - component: {fileID: 2911663564214409898}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Read
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7584399460873146899}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   - component: {fileID: 1549403845064195193}
   - component: {fileID: 2522962318973210419}
   - component: {fileID: 6049513713875775991}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}

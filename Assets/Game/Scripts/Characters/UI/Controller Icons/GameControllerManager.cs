@@ -38,12 +38,29 @@ namespace Game.Scripts.Characters.UI.Controller_Icons
 		private void Start()
 		{
 			InputSystem.onDeviceChange += HandleDeviceChanged;
+			//InputSystem.onActionChange += HandleActionChanged;
+			SetControllerBinding();
+		}
+
+		private void HandleActionChanged(object obj, InputActionChange inputActionChange)
+		{
+			if (inputActionChange == InputActionChange.ActionPerformed)
+			{
+				var receivedInputAction = (InputAction) obj;
+				var lastDevice = receivedInputAction.activeControl.device;
+
+				isGamepad = !lastDevice.name.Equals("Keyboard") || !lastDevice.name.Equals("Mouse");
+				SetControllerBinding();
+				OnControllerChange?.Invoke(isGamepad);
+			}
 		}
 
 		private void HandleDeviceChanged(InputDevice inputDevice, InputDeviceChange inputDeviceChange)
 		{
-			isGamepad = inputDevice.description.deviceClass != "Keyboard";
-
+			isGamepad = inputDevice.description.deviceClass != "Keyboard" &&
+			            inputDevice.description.deviceClass != "Mouse";
+			
+			Debug.Log($"Gamepad = {isGamepad}");
 			switch (inputDeviceChange)
 			{
 				case InputDeviceChange.Added:
@@ -60,6 +77,12 @@ namespace Game.Scripts.Characters.UI.Controller_Icons
 					break;
 			}
 
+			SetControllerBinding();
+			OnControllerChange?.Invoke(isGamepad);
+		}
+
+		private void SetControllerBinding()
+		{
 			if (isGamepad)
 			{
 				var bindingGroup =
@@ -74,13 +97,12 @@ namespace Game.Scripts.Characters.UI.Controller_Icons
 
 				playerInput.bindingMask = InputBinding.MaskByGroup(bindingGroup);
 			}
-
-			OnControllerChange?.Invoke(isGamepad);
 		}
 
 		private void OnDestroy()
 		{
 			InputSystem.onDeviceChange -= HandleDeviceChanged;
+			//InputSystem.onActionChange -= HandleActionChanged;
 		}
 	}
 }
