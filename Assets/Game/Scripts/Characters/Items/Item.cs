@@ -26,6 +26,12 @@ namespace Game.Scripts.Characters.Player
 		[SerializeField]
 		private ParticleSystem pickUpEffect;
 
+		[SerializeField]
+		private AudioSource audioSource;
+
+		[SerializeField]
+		private AudioClip pickUpSound;
+
 		private bool isButtonsEnabled;
 
 		private void Start()
@@ -55,6 +61,11 @@ namespace Game.Scripts.Characters.Player
 				if (pickUpEffect != null)
 				{
 					pickUpEffect.Play();
+				}
+
+				if (pickUpSound != null)
+				{
+					audioSource.PlayOneShot(pickUpSound);
 				}
 
 				gameObject.SetActive(false);

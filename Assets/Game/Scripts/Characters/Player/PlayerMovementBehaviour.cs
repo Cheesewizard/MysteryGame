@@ -1,7 +1,7 @@
 using System;
+using Game.Scripts.Characters.UI.Controller_Icons;
 using Game.Scripts.Controls;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Game.Scripts.Characters.Player
 {
@@ -14,9 +14,8 @@ namespace Game.Scripts.Characters.Player
 
 		[SerializeField]
 		private float movementSpeed = 20;
-
-		[SerializeField]
-		private bool isGamepad = false;
+		
+		private static bool IsGamepad => GameControllerManager.instance.IsGamepad;
 
 		[SerializeField]
 		private float gamepadRotationSpeed = 0.05f;
@@ -31,27 +30,12 @@ namespace Game.Scripts.Characters.Player
 		{
 			Cursor.visible = false; // maybe remove.
 			playerInput?.Player.Enable();
-
-			// Detect when input has been changed
-			InputSystem.onDeviceChange += InputDeviceChanged;
 		}
-
-		private void InputDeviceChanged(InputDevice inputDevice, InputDeviceChange inputDeviceChange)
-		{
-			// if (inputDevice.description.ToString() == "Keyboard" || inputDevice.description.ToString() == "Mouse")
-			// {
-			// 	isGamepad = false;
-			// }
-			// else
-			// {
-			// 	isGamepad = true;
-			// }
-		}
-
+		
 		private void Update()
 		{
 			// Mouse & Keyboard
-			if (!isGamepad)
+			if (!IsGamepad)
 			{
 				LookAtMouse();
 			}
@@ -98,11 +82,6 @@ namespace Game.Scripts.Characters.Player
 				transform.parent.localRotation = Quaternion.Lerp(transform.parent.localRotation,
 					Quaternion.Euler(new Vector3(0, 0, angle)), gamepadRotationSpeed);
 			}
-		}
-
-		private void OnDisable()
-		{
-			InputSystem.onDeviceChange -= InputDeviceChanged;
 		}
 	}
 }

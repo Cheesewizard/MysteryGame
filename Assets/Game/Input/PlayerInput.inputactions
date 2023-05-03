@@ -99,17 +99,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "1ce03d7f-e9f0-42e6-86dd-baef0b03ea25",
-                    "path": "<SwitchProControllerHID>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Switch Pad Pro",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "2D Vector",
                     "id": "77508477-9f4b-489a-b5a6-8c8c47713ada",
                     "path": "2DVector",
@@ -118,61 +107,6 @@
                     "groups": "",
                     "action": "Move",
                     "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "5597ad20-697f-4a15-b4cb-bb0b8d4f9ab7",
-                    "path": "<SwitchProControllerHID>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Switch Pad Pro",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "887a9245-f70b-4c14-91ee-d2aa4fde7963",
-                    "path": "<SwitchProControllerHID>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Switch Pad Pro",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "25ac2986-6dda-4fe3-b5b7-7c1b96da4dca",
-                    "path": "<SwitchProControllerHID>/dpad/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Switch Pad Pro",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "e24299ad-d34a-4768-ba75-50626dd684db",
-                    "path": "<SwitchProControllerHID>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Switch Pad Pro",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "b8a05bd6-c183-4833-9eb5-06bbece8b1dd",
-                    "path": "<XInputController>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Xbox Pad",
-                    "action": "Move",
-                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
@@ -187,45 +121,67 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "4ffdddea-0b5a-4d6a-a106-891ff10f5613",
-                    "path": "<XInputController>/dpad/up",
+                    "name": "",
+                    "id": "17e1cffd-9d86-444b-ad7f-c21433e15018",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Xbox Pad",
+                    "groups": "Gamepad",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "83a7e7ea-a5b9-4781-9266-171a4a45cb2c",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "12df6309-6cf2-4638-ab66-26963697d3de",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "4bcb78c8-91fb-4380-976a-4974024251cb",
-                    "path": "<XInputController>/dpad/down",
+                    "id": "6e344d6c-e4a1-4ff2-b384-6e183e205f96",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Xbox Pad",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "d80576af-1dca-412b-864e-0c061d8e1a12",
-                    "path": "<XInputController>/dpad/left",
+                    "id": "57149cf5-f213-461c-98ad-0192d3188e44",
+                    "path": "<Gamepad>/dpad/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Xbox Pad",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "54acffb4-d2a9-4602-a944-c6b02259772d",
-                    "path": "<XInputController>/dpad/right",
+                    "id": "01e0c522-f888-47dd-a66a-622e35c29cd9",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Xbox Pad",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -243,22 +199,11 @@
                 },
                 {
                     "name": "",
-                    "id": "6097a300-aff1-4feb-af6e-e37fa3dab431",
-                    "path": "<SwitchProControllerHID>/rightStick",
-                    "interactions": "",
-                    "processors": "NormalizeVector2",
-                    "groups": "Switch Pad Pro",
-                    "action": "Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "30371036-780a-4f86-827c-3e4c771582b1",
-                    "path": "<XInputController>/rightStick",
+                    "id": "31865972-3683-4e13-bb57-90c1e9c76c9a",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Xbox Pad",
+                    "groups": "Gamepad",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -276,22 +221,11 @@
                 },
                 {
                     "name": "",
-                    "id": "3651ffe5-2f93-4277-9715-b17c3041869b",
-                    "path": "<SwitchProControllerHID>/rightShoulder",
+                    "id": "76bb8e1b-4cde-4c51-bc17-e0ced33c5b57",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Switch Pad Pro",
-                    "action": "Read",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5e7bce34-730f-4835-90b5-1b7748d69f54",
-                    "path": "<XInputController>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Xbox Pad",
+                    "groups": "Gamepad",
                     "action": "Read",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -309,22 +243,11 @@
                 },
                 {
                     "name": "",
-                    "id": "0e593458-691a-47c9-8f77-3cdf20dbb59b",
-                    "path": "<SwitchProControllerHID>/leftShoulder",
+                    "id": "a6581994-2723-4cb9-b459-69849cc7c92d",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Switch Pad Pro",
-                    "action": "Pickup",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1800e6d8-8c42-417c-90a5-29982124ce28",
-                    "path": "<XInputController>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Xbox Pad",
+                    "groups": "Gamepad",
                     "action": "Pickup",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -350,22 +273,11 @@
             ]
         },
         {
-            "name": "Switch Pad Pro",
-            "bindingGroup": "Switch Pad Pro",
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
             "devices": [
                 {
-                    "devicePath": "<SwitchProControllerHID>",
-                    "isOptional": true,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "Xbox Pad",
-            "bindingGroup": "Xbox Pad",
-            "devices": [
-                {
-                    "devicePath": "<XInputController>",
+                    "devicePath": "<Gamepad>",
                     "isOptional": true,
                     "isOR": false
                 }
