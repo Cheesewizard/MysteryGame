@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Game.Scripts.Characters.Player;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ namespace Game.Scripts.Characters.Items
 		[Header("Item Interactivity Properties")]
 		[SerializeField]
 		private ItemType itemType;
+		public ItemType ItemType => itemType;
 
 		[SerializeField]
 		private bool canBePickedUp;
