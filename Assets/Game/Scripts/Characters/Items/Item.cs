@@ -1,19 +1,28 @@
+using Game.Scripts.Characters.Player;
 using TMPro;
 using UnityEngine;
 
-namespace Game.Scripts.Characters.Player
+namespace Game.Scripts.Characters.Items
 {
 	public class Item : MonoBehaviour
 	{
+		[Header("Item Interactivity Properties")]
 		[SerializeField]
 		private ItemType itemType;
 
 		[SerializeField]
-		public bool canBePickedUp;
+		private bool canBePickedUp;
+		public bool CanBePickedUp => canBePickedUp;
 
 		[SerializeField]
-		public bool canBeInteractedWith;
+		private bool canBeInteractedWith;
+		public bool CanBeInteractedWith => canBeInteractedWith;
+		
+		[SerializeField]
+		private bool canReadForever;
+		public bool CanReadForever => canReadForever;
 
+		[Header("Dependencies")]
 		[SerializeField]
 		private TextMeshPro itemDescription;
 
@@ -23,6 +32,7 @@ namespace Game.Scripts.Characters.Player
 		[SerializeField]
 		private TextMeshPro interactButtonUi;
 
+		[Header("Item Effects")]
 		[SerializeField]
 		private ParticleSystem pickUpEffect;
 
@@ -34,29 +44,23 @@ namespace Game.Scripts.Characters.Player
 
 		private bool isButtonsEnabled;
 
+		private bool isRead;
+		public bool IsRead => isRead;
+
+		private bool isPickedUp;
+		public bool IsPickedUp => isPickedUp;
+
+		private bool isReading;
+		public bool IsReading => isReading;
+
 		private void Start()
 		{
 			itemDescription.gameObject.SetActive(false);
 		}
 
-		public void SetButtons(bool isVisible)
-		{
-			isButtonsEnabled = isVisible;
-
-			if (canBeInteractedWith)
-			{
-				interactButtonUi.gameObject.SetActive(isVisible);
-			}
-
-			if (canBePickedUp)
-			{
-				pickupButtonUi.gameObject.SetActive(isVisible);
-			}
-		}
-
 		public Item PickUpItem()
 		{
-			if (canBePickedUp)
+			if (canBePickedUp && isRead)
 			{
 				if (pickUpEffect != null)
 				{
@@ -68,6 +72,7 @@ namespace Game.Scripts.Characters.Player
 					audioSource.PlayOneShot(pickUpSound);
 				}
 
+				isPickedUp = true;
 				gameObject.SetActive(false);
 				return this;
 			}
@@ -80,16 +85,53 @@ namespace Game.Scripts.Characters.Player
 			return itemDescription.text;
 		}
 
-		public void ToggleButtons()
+		public void CheckIfTextHasBeenRead(bool hasRead)
 		{
-			isButtonsEnabled = !isButtonsEnabled;
-			SetButtons(isButtonsEnabled);
+			isRead = hasRead;
+			MarkAsNotReading();
+			
+			if (isRead)
+			{
+				ShowButtons();
+			}
+			else
+			{
+				HideButtons();
+			}
 		}
 
-		// void OnDrawGizmos()
-		// {
-		// 	Gizmos.color = Color.blue;
-		// 	Gizmos.DrawWireSphere(transform.position, raycastRadius);
-		// }
+		public void ShowButtons()
+		{
+			if (isRead && !canReadForever)
+			{
+				interactButtonUi.gameObject.SetActive(false);
+				if (canBePickedUp)
+				{
+					pickupButtonUi.gameObject.SetActive(true);
+				}
+			}
+
+			if (!isRead || canReadForever)
+			{
+				pickupButtonUi.gameObject.SetActive(false);
+				interactButtonUi.gameObject.SetActive(true);
+			}
+		}
+
+		public void HideButtons()
+		{
+			interactButtonUi.gameObject.SetActive(false);
+			pickupButtonUi.gameObject.SetActive(false);
+		}
+
+		public void MarkAsIsReading()
+		{
+			isReading = true;
+		}
+
+		private void MarkAsNotReading()
+		{
+			isReading = false;
+		}
 	}
 }

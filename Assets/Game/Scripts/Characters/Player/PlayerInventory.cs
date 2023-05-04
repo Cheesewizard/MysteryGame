@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.Scripts.Characters.Items;
 using UnityEngine;
 
 namespace Game.Scripts.Characters.Player
