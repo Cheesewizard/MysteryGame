@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Game.Scripts.Characters.Player;
 using TMPro;
 using UnityEngine;
@@ -12,20 +13,23 @@ namespace Game.Scripts.Characters.Items
 
 		[SerializeField]
 		private bool canBePickedUp;
+
 		public bool CanBePickedUp => canBePickedUp;
 
 		[SerializeField]
 		private bool canBeInteractedWith;
+
 		public bool CanBeInteractedWith => canBeInteractedWith;
-		
+
 		[SerializeField]
 		private bool canReadForever;
+
 		public bool CanReadForever => canReadForever;
 
 		[Header("Dependencies")]
 		[SerializeField]
-		private TextMeshPro itemDescription;
-
+		private ItemText itemText;
+		
 		[SerializeField]
 		private TextMeshPro pickupButtonUi;
 
@@ -53,11 +57,6 @@ namespace Game.Scripts.Characters.Items
 		private bool isReading;
 		public bool IsReading => isReading;
 
-		private void Start()
-		{
-			itemDescription.gameObject.SetActive(false);
-		}
-
 		public Item PickUpItem()
 		{
 			if (canBePickedUp && isRead)
@@ -80,16 +79,16 @@ namespace Game.Scripts.Characters.Items
 			return null;
 		}
 
-		public string GetDescription()
+		public List<string> GetDescription()
 		{
-			return itemDescription.text;
+			return itemText.GetItemText();
 		}
 
 		public void CheckIfTextHasBeenRead(bool hasRead)
 		{
 			isRead = hasRead;
 			MarkAsNotReading();
-			
+
 			if (isRead)
 			{
 				ShowButtons();

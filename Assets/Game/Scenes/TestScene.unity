@@ -278,6 +278,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[0]
+      value: Ok we get the picture
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[1]
+      value: You wanna pick me up or something?
+      objectReference: {fileID: 0}
     - target: {fileID: 880984322968236718, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.79
@@ -369,10 +377,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1646612035834706473, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
 --- !u!1001 &633082885
 PrefabInstance:
@@ -382,6 +387,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[0]
+      value: This is just a test
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[1]
+      value: I like doing maths
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[2]
+      value: do you like doing maths?
+      objectReference: {fileID: 0}
     - target: {fileID: 880984322968236718, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.64
@@ -604,6 +625,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[0]
+      value: Im the last one i see
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[1]
+      value: perhaps i will test you
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[4]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 269933603812152604, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: itemTextRows.Array.data[5]
+      value: hehe
+      objectReference: {fileID: 0}
     - target: {fileID: 1570814769511784075, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
       propertyPath: m_Name
       value: PickupItem (3)
@@ -634,6 +683,22 @@ PrefabInstance:
     - target: {fileID: 7049940923998985707, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
       propertyPath: canReadIndefinitely
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049940923998985707, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: textQueueSerialized.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049940923998985707, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: textQueueSerialized.Array.data[0]
+      value: This is my first bit of text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049940923998985707, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: textQueueSerialized.Array.data[1]
+      value: This is my second bit of text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049940923998985707, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
+      propertyPath: textQueueSerialized.Array.data[2]
+      value: I wonder if this is my third bit of text.
       objectReference: {fileID: 0}
     - target: {fileID: 7194026635022462328, guid: 14ae9adfc2e2aa44cbe8a8af7da68d83, type: 3}
       propertyPath: m_RootOrder
