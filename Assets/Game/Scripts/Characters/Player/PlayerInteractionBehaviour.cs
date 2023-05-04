@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Game.Scripts.Characters.Items;
 using Game.Scripts.Characters.UI.Dialogue;
 using Game.Scripts.Controls;
-using TMPro;
+using Game.Scripts.Gameplay.Trigger;
 using UnityEngine;
 
 namespace Game.Scripts.Characters.Player
@@ -23,7 +23,7 @@ namespace Game.Scripts.Characters.Player
 
 		public event Action<List<string>> OnInteractWithItem;
 		public event Action OnExitItem;
-		public event Action OnPickupItem;
+		public event Action<Item> OnPickupItem;
 
 		private void Update()
 		{
@@ -51,7 +51,7 @@ namespace Game.Scripts.Characters.Player
 					var pickedUpItem = currentItem.PickUpItem();
 					if (pickedUpItem != null)
 					{
-						OnPickupItem?.Invoke();
+						OnPickupItem?.Invoke(pickedUpItem);
 						playerInventory.AddItem(pickedUpItem);
 					}
 				}
@@ -60,6 +60,8 @@ namespace Game.Scripts.Characters.Player
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
+			HandleObjectiveTrigger(other);
+
 			if (other.TryGetComponent<Item>(out var item))
 			{
 				previousItem = currentItem;
@@ -71,6 +73,9 @@ namespace Game.Scripts.Characters.Player
 
 		private void OnTriggerExit2D(Collider2D other)
 		{
+			dialogueBehaviour.CancelTypeWriter();
+			dialogueBehaviour.CancelDialogue();
+
 			if (currentItem == null) return;
 
 			currentItem.HideButtons();
@@ -86,6 +91,36 @@ namespace Game.Scripts.Characters.Player
 
 			OnExitItem?.Invoke();
 			currentItem = null;
+		}
+
+		private void HandleObjectiveTrigger(Collider2D other)
+		{
+			if (other.TryGetComponent<ObjectiveTrigger>(out var objectiveTrigger))
+			{
+				if (!objectiveTrigger.IsCompleted)
+				{
+					if (!objectiveTrigger.ObjectiveStartRead)
+					{
+						dialogueBehaviour.AwaitCallBack(objectiveTrigger.OnObjectiveStartTextRead,
+							objectiveTrigger.ObjectiveText);
+					}
+
+					if (objectiveTrigger.ObjectiveStartRead)
+					{
+						var objectiveComplete = objectiveTrigger.CheckIfItemsInventory(playerInventory);
+						if (objectiveComplete)
+						{
+							dialogueBehaviour.AwaitCallBack(objectiveTrigger.OnObjectiveCompletedTextRead,
+								objectiveTrigger.ObjectiveCompletedText);
+						}
+						else
+						{
+							dialogueBehaviour.AwaitCallBack(objectiveTrigger.OnObjectiveStartTextRead,
+								objectiveTrigger.ObjectiveText);
+						}
+					}
+				}
+			}
 		}
 	}
 }

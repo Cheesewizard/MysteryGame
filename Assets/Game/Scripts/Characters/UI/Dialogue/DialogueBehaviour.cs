@@ -18,9 +18,9 @@ namespace Game.Scripts.Characters.UI.Dialogue
 
 		[SerializeField]
 		private TextMeshProUGUI textMeshPro;
-
+		
 		[SerializeField]
-		private Canvas canvas;
+		private GameObject dialogueBox;
 
 		private CancellationTokenSource tokenSource;
 		private CancellationTokenSource controllerTokenSource;
@@ -29,7 +29,7 @@ namespace Game.Scripts.Characters.UI.Dialogue
 
 		private void Start()
 		{
-			canvas.gameObject.SetActive(false);
+			dialogueBox.gameObject.SetActive(false);
 			playerInteractionBehaviour.OnExitItem += HandleExitItem;
 		}
 
@@ -37,21 +37,27 @@ namespace Game.Scripts.Characters.UI.Dialogue
 		{
 			CancelTypeWriter();
 			CancelDialogue();
-			
-			canvas.gameObject.SetActive(false);
+
+			dialogueBox.gameObject.SetActive(false);
 			textMeshPro.text = string.Empty;
 			DisableUIControls();
 		}
 
 		public async void AwaitCallBack(Action<bool> callback, List<string> textQueue)
 		{
+			if (textQueue.Count == 0)
+			{
+				callback?.Invoke(false);
+				return;
+			}
+
 			EnableUIControls();
-			canvas.gameObject.SetActive(true);
+			dialogueBox.gameObject.SetActive(true);
 
 			this.callback = callback;
 			await AnimateText(textQueue);
 
-			canvas.gameObject.SetActive(false);
+			dialogueBox.gameObject.SetActive(false);
 			DisableUIControls();
 		}
 
@@ -90,12 +96,12 @@ namespace Game.Scripts.Characters.UI.Dialogue
 			return UniTask.CompletedTask;
 		}
 
-		private void CancelTypeWriter()
+		public void CancelTypeWriter()
 		{
 			tokenSource?.Cancel();
 		}
 
-		private void CancelDialogue()
+		public void CancelDialogue()
 		{
 			controllerTokenSource?.Cancel();
 		}
