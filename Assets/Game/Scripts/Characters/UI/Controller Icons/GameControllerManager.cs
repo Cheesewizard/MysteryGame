@@ -23,6 +23,7 @@ namespace Game.Scripts.Characters.UI.Controller_Icons
 			if (instance != null)
 			{
 				Destroy(gameObject);
+				return;
 			}
 
 			instance = this;

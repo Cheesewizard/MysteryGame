@@ -1,5 +1,8 @@
 using System;
+using Game.Scripts.Characters.Items;
+using Game.Scripts.Characters.UI.Dialogue;
 using Game.Scripts.Controls;
+using TMPro;
 using UnityEngine;
 
 namespace Game.Scripts.Characters.Player
@@ -8,6 +11,9 @@ namespace Game.Scripts.Characters.Player
 	{
 		[SerializeField]
 		private PlayerInventory playerInventory;
+
+		[SerializeField]
+		private DialogueBehaviour dialogueBehaviour;
 
 		private PlayerInput playerInput => PlayerInputLocator.GetPlayerInput();
 
@@ -23,17 +29,21 @@ namespace Game.Scripts.Characters.Player
 			if (currentItem == null) return;
 
 			// Interact
-			if (currentItem.canBeInteractedWith)
+			if (currentItem.CanBeInteractedWith && !currentItem.IsRead ||
+			    currentItem.CanReadForever && !currentItem.IsReading)
 			{
 				if (playerInput.Player.Read.WasPressedThisFrame())
 				{
+					currentItem.MarkAsIsReading();
+					dialogueBehaviour.AwaitCallBack(currentItem.CheckIfTextHasBeenRead,
+						currentItem.GetDescription());
+
 					OnInteractWithItem?.Invoke(currentItem.GetDescription());
-					currentItem.ToggleButtons();
 				}
 			}
 
 			// Pickup
-			if (currentItem.canBePickedUp)
+			if (currentItem.CanBePickedUp && currentItem.IsRead)
 			{
 				if (playerInput.Player.Pickup.WasPressedThisFrame())
 				{
@@ -54,7 +64,7 @@ namespace Game.Scripts.Characters.Player
 				previousItem = currentItem;
 				currentItem = item;
 				Debug.Log($"Current item {item.name}");
-				item.SetButtons(true);
+				item.ShowButtons();
 			}
 		}
 
@@ -62,12 +72,12 @@ namespace Game.Scripts.Characters.Player
 		{
 			if (currentItem == null) return;
 
-			// Disable the interaction with the previous item
-			currentItem.SetButtons(false);
+			currentItem.HideButtons();
 
+			// Disable the interaction with the previous item
 			if (previousItem != null)
 			{
-				previousItem.SetButtons(false);
+				previousItem.HideButtons();
 				previousItem = null;
 			}
 
