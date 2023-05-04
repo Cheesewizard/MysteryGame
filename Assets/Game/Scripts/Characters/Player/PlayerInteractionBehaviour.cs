@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Game.Scripts.Characters.Items;
 using Game.Scripts.Characters.UI.Dialogue;
 using Game.Scripts.Controls;
@@ -20,7 +21,7 @@ namespace Game.Scripts.Characters.Player
 		private Item currentItem;
 		private Item previousItem;
 
-		public event Action<string> OnInteractWithItem;
+		public event Action<List<string>> OnInteractWithItem;
 		public event Action OnExitItem;
 		public event Action OnPickupItem;
 
