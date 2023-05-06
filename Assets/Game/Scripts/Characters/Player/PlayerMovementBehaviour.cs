@@ -10,11 +10,14 @@ namespace Game.Scripts.Characters.Player
 		private PlayerInput playerInput => PlayerInputLocator.GetPlayerInput();
 
 		[SerializeField]
+		private Rigidbody2D rigidbody;
+
+		[SerializeField]
 		private Camera targetCamera;
 
 		[SerializeField]
 		private float movementSpeed = 20;
-		
+
 		private static bool IsGamepad => GameControllerManager.instance.IsGamepad;
 
 		[SerializeField]
@@ -31,8 +34,8 @@ namespace Game.Scripts.Characters.Player
 			Cursor.visible = false; // maybe remove.
 			playerInput?.Player.Enable();
 		}
-		
-		private void Update()
+
+		private void FixedUpdate()
 		{
 			// Mouse & Keyboard
 			if (!IsGamepad)
@@ -51,10 +54,11 @@ namespace Game.Scripts.Characters.Player
 		{
 			var input = playerInput.Player.Move.ReadValue<Vector2>();
 
-			var newPosition = new Vector2(input.x, input.y) * (movementSpeed * Time.deltaTime);
+			var newPosition = new Vector2(input.x, input.y);
 
 			OnMovement?.Invoke(newPosition != Vector2.zero);
-			transform.root.Translate(newPosition.x, newPosition.y, 0f, Space.World);
+
+			rigidbody.MovePosition((Vector2) transform.position + newPosition * (movementSpeed * Time.deltaTime));
 		}
 
 		private void LookAtMouse()

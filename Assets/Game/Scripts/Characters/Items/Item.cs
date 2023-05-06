@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.Scripts.Characters.UI.Dialogue;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Game.Scripts.Characters.Items
 		[Header("Item Interactivity Properties")]
 		[SerializeField]
 		private ItemType itemType;
+
 		public ItemType ItemType => itemType;
 
 		[SerializeField]
@@ -29,7 +31,7 @@ namespace Game.Scripts.Characters.Items
 		[Header("Dependencies")]
 		[SerializeField]
 		private ItemText itemText;
-		
+
 		[SerializeField]
 		private TextMeshPro pickupButtonUi;
 
@@ -39,9 +41,6 @@ namespace Game.Scripts.Characters.Items
 		[Header("Item Effects")]
 		[SerializeField]
 		private ParticleSystem pickUpEffect;
-
-		[SerializeField]
-		private AudioSource audioSource;
 
 		[SerializeField]
 		private AudioClip pickUpSound;
@@ -68,7 +67,7 @@ namespace Game.Scripts.Characters.Items
 
 				if (pickUpSound != null)
 				{
-					audioSource.PlayOneShot(pickUpSound);
+					SoundManager.instance.PlayOneShot(pickUpSound);
 				}
 
 				isPickedUp = true;
