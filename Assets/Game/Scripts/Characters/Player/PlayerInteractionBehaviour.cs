@@ -21,13 +21,15 @@ namespace Game.Scripts.Characters.Player
 		private Item currentItem;
 		private Item previousItem;
 
+		private bool isInTrigger;
+
 		public event Action<List<string>> OnInteractWithItem;
 		public event Action OnExitItem;
 		public event Action<Item> OnPickupItem;
 
 		private void Update()
 		{
-			if (currentItem == null) return;
+			if (currentItem == null || !isInTrigger) return;
 
 			// Interact
 			if (currentItem.CanBeInteractedWith && !currentItem.IsRead ||
@@ -60,9 +62,11 @@ namespace Game.Scripts.Characters.Player
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
+			isInTrigger = true;
 			HandleObjectiveTrigger(other);
 
-			if (other.TryGetComponent<Item>(out var item))
+			var item = other.GetComponentInParent<Item>();
+			if (item != null)
 			{
 				previousItem = currentItem;
 				currentItem = item;
@@ -73,6 +77,8 @@ namespace Game.Scripts.Characters.Player
 
 		private void OnTriggerExit2D(Collider2D other)
 		{
+			isInTrigger = false;
+
 			dialogueBehaviour.CancelTypeWriter();
 			dialogueBehaviour.CancelDialogue();
 
@@ -95,7 +101,8 @@ namespace Game.Scripts.Characters.Player
 
 		private void HandleObjectiveTrigger(Collider2D other)
 		{
-			if (other.TryGetComponent<ObjectiveTrigger>(out var objectiveTrigger))
+			var objectiveTrigger = other.GetComponent<ObjectiveTrigger>();
+			if (objectiveTrigger != null)
 			{
 				if (!objectiveTrigger.IsCompleted)
 				{
