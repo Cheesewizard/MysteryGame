@@ -11,6 +11,10 @@ namespace Game.Scripts.Characters.Items
 		Talisman,
 		BlueGem,
 		RedGem,
-		GreenGem
+		GreenGem,
+		ChestKey,
+		OldKey,
+		CrimsonKey,
+		DiamondKey
 	}
 }

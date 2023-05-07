@@ -15,7 +15,7 @@ namespace Game.Scripts.Characters.Player
 
 		[SerializeField]
 		private DialogueBehaviour dialogueBehaviour;
-
+		
 		private PlayerInput playerInput => PlayerInputLocator.GetPlayerInput();
 
 		private Item currentItem;
