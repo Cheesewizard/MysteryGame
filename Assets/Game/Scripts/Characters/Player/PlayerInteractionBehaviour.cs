@@ -15,7 +15,7 @@ namespace Game.Scripts.Characters.Player
 
 		[SerializeField]
 		private DialogueBehaviour dialogueBehaviour;
-		
+
 		private PlayerInput playerInput => PlayerInputLocator.GetPlayerInput();
 
 		private Item currentItem;
@@ -106,25 +106,16 @@ namespace Game.Scripts.Characters.Player
 			{
 				if (!objectiveTrigger.IsCompleted)
 				{
-					if (!objectiveTrigger.ObjectiveStartRead)
+					var objectiveCompleteCheck = objectiveTrigger.CheckIfItemsInventory(playerInventory);
+					if (objectiveCompleteCheck && objectiveTrigger.RequiresItems)
+					{
+						dialogueBehaviour.AwaitCallBack(objectiveTrigger.OnObjectiveCompletedTextRead,
+							objectiveTrigger.ObjectiveCompletedText);
+					}
+					else
 					{
 						dialogueBehaviour.AwaitCallBack(objectiveTrigger.OnObjectiveStartTextRead,
 							objectiveTrigger.ObjectiveText);
-					}
-
-					if (objectiveTrigger.ObjectiveStartRead)
-					{
-						var objectiveComplete = objectiveTrigger.CheckIfItemsInventory(playerInventory);
-						if (objectiveComplete)
-						{
-							dialogueBehaviour.AwaitCallBack(objectiveTrigger.OnObjectiveCompletedTextRead,
-								objectiveTrigger.ObjectiveCompletedText);
-						}
-						else
-						{
-							dialogueBehaviour.AwaitCallBack(objectiveTrigger.OnObjectiveStartTextRead,
-								objectiveTrigger.ObjectiveText);
-						}
 					}
 				}
 			}

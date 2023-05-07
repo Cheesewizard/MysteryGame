@@ -28,6 +28,10 @@ namespace Game.Scripts.Gameplay.Trigger
 		private bool shouldRemoveItemsFromInventory;
 
 		[SerializeField]
+		private bool requiresItems;
+		public bool RequiresItems => requiresItems;
+
+		[SerializeField]
 		private List<string> objectiveText;
 
 		public List<string> ObjectiveText => objectiveText;
