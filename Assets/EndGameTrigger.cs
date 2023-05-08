@@ -6,7 +6,7 @@ public class EndGameTrigger : MonoBehaviour
 	[SerializeField]
 	private string mainMenuScene;
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter2D(Collider2D other)
 	{
 		SceneManager.LoadScene(mainMenuScene);
 	}
