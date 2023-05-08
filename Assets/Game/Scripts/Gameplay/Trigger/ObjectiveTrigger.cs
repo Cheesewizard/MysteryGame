@@ -19,10 +19,17 @@ namespace Game.Scripts.Gameplay.Trigger
 		private List<GameObject> objectsToEnable;
 
 		[SerializeField]
+		private List<GameObject> objectsToDisableAfterRead;
+
+		[SerializeField]
 		private List<ItemType> requiredItemsForTrigger;
 
 		[SerializeField]
 		private bool shouldRemoveItemsFromInventory;
+
+		[SerializeField]
+		private bool requiresItems;
+		public bool RequiresItems => requiresItems;
 
 		[SerializeField]
 		private List<string> objectiveText;
@@ -89,6 +96,11 @@ namespace Game.Scripts.Gameplay.Trigger
 		public void OnObjectiveStartTextRead(bool wasRead)
 		{
 			objectiveStartRead = wasRead;
+			
+			if (wasRead)
+			{
+				DisableObjectsAfterRead();
+			}
 		}
 
 		public void OnObjectiveCompletedTextRead(bool wasRead)
@@ -117,6 +129,14 @@ namespace Game.Scripts.Gameplay.Trigger
 		private void DisableObjects()
 		{
 			foreach (var toDisableObject in objectsToDisable)
+			{
+				toDisableObject.gameObject.SetActive(false);
+			}
+		}
+
+		private void DisableObjectsAfterRead()
+		{
+			foreach (var toDisableObject in objectsToDisableAfterRead)
 			{
 				toDisableObject.gameObject.SetActive(false);
 			}

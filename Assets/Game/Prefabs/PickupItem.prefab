@@ -37,7 +37,7 @@ Transform:
   - {fileID: 3948291756415347540}
   - {fileID: 4358331628965082928}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8691945250210742441
 SpriteRenderer:
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 99267e176d0c0284bb8d43088d5f1e27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d5331958e769a74bbbd8abce6172320, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,7 +127,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.42, y: 0.89}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 0.42, y: 0.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -156,7 +156,6 @@ MonoBehaviour:
   pickupButtonUi: {fileID: 6049513713875775991}
   interactButtonUi: {fileID: 2911663564214409898}
   pickUpEffect: {fileID: 7592971973396764316}
-  audioSource: {fileID: 7051002551572284299}
   pickUpSound: {fileID: 8300000, guid: 1650ac7afb401204c8c6956b863aa114, type: 3}
 --- !u!82 &7051002551572284299
 AudioSource:
@@ -488,9 +487,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemTextRows:
-  - You see an old giant decrepid looking key. It looks like it would crumble at
-    the first touch.
-  - Perhaps it is some sort of relic?
+  - An old rusty key
+  - I wonder if it will fit the door i saw back there?
 --- !u!1 &4278425981865510453
 GameObject:
   m_ObjectHideFlags: 0

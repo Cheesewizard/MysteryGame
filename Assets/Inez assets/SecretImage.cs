@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class ImageShow : MonoBehaviour
 {
-
     public bool isImgOn;
     public Image img;
 
