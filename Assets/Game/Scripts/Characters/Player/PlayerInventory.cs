@@ -12,6 +12,7 @@ namespace Game.Scripts.Characters.Player
 
 		public void AddItem(Item item)
 		{
+			Debug.Log($"Added item to player inventory {item.ItemType}");
 			inventory.Add(item);
 		}
 
